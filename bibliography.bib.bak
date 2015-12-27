@@ -1,0 +1,10 @@
+% Encoding: UTF-8
+
+
+@Conference{vel13,
+  Title                    = {Qualitative Activity Recognition of Weight Lifting Exercises},
+  Author                   = {Velloso E. \& Bulling A. \& Gellersen H. \& Ugulino W. \& Fuks H.},
+  Booktitle                = {Proceedings of 4th International Conference in Cooperation with SIGCHI},
+  Year                     = {2013}
+}
+

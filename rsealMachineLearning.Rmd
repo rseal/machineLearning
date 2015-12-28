@@ -31,7 +31,7 @@ training <- read.csv('pml-training.csv', na.strings=c('#DIV/0', '', 'NA'), strin
 testing <- read.csv('pml-testing.csv', na.strings=c('#DIV/0', '', 'NA'), stringsAsFactors = T)
 set.seed(12345)
 ```
-Features were selected by iterating through subsets of data visualized via the \emph{featurePlot} command. After a cursory examination, non-sparse variables were chosen and they were transformed by computing magnitudes of multi-axis data and used 10*log10(var+1) to provide better separation of the values. The following snippet provides a summary of steps taken. 
+Features were selected by iterating through subsets of data visualized via the \emph{featurePlot} command. After a cursory examination, non-sparse variables were chosen and they were transformed by computing magnitudes of multi-axis data. The following snippet provides a summary of steps taken. 
 
 ```{r}
 train_features <- NULL
@@ -46,7 +46,7 @@ train_features$roll_dumbbell <- training$roll_dumbbell
 train_features$classe <- training$classe
 train_features$pitch_belt <- training$pitch_belt
 ```
-Based on course experience, a random forest algorithm was used to build the prediction model. Variable importance was examined using \emph{varImpPlot} to ensure that the chosen variables provided some level of importance. The number of trees in the fit was limited to 2000.
+Based on course experience (and lecture notes), a random forest algorithm is considered one of the best-performing algorithms and was used to build the prediction model. Variable importance was examined using \emph{varImpPlot} to ensure that the chosen variables provided some level of importance. The number of trees in the fit was limited to 500. Cross validation is estimated internally with this algorithm and the Out-Of-Bag (OOB) error is provided when the model is fit (see output below).
 ```{r}
 library(randomForest)
 fit <- randomForest(classe~.,data=train_features, importance=TRUE)

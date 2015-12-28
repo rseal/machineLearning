@@ -88,7 +88,7 @@ img {
 <p>Without any other knowledge, this information alone should be able to provide great insight into a proper prediction. #Model ConstructionQualitative Activity Recognition of Weight Lifting Exercises In this particular set of data, the data is formatted as comma-separated-value (CSV) data, and both training and test data have already been selected. There are several variables provided in the dataset and a list is provided below:</p>
 <pre><code>## Loading required package: lattice
 ## Loading required package: ggplot2</code></pre>
-<p>Features were selected by iterating through subsets of data visualized via the  command. After a cursory examination, non-sparse variables were chosen and they were transformed by computing magnitudes of multi-axis data and used 10*log10(var+1) to provide better separation of the values. The following snippet provides a summary of steps taken.</p>
+<p>Features were selected by iterating through subsets of data visualized via the  command. After a cursory examination, non-sparse variables were chosen and they were transformed by computing magnitudes of multi-axis data. The following snippet provides a summary of steps taken.</p>
 <pre class="r"><code>train_features &lt;- NULL
 train_features$gbm &lt;- sqrt(training$gyros_belt_x**2.0 + training$gyros_belt_y**2.0 + training$gyros_belt_z**2.0)
 train_features$abm &lt;- sqrt(training$accel_belt_x**2.0 + training$accel_belt_y**2.0 + training$accel_belt_z**2.0)
@@ -100,7 +100,7 @@ train_features$roll_belt &lt;- training$roll_belt
 train_features$roll_dumbbell &lt;- training$roll_dumbbell
 train_features$classe &lt;- training$classe
 train_features$pitch_belt &lt;- training$pitch_belt</code></pre>
-<p>Based on course experience, a random forest algorithm was used to build the prediction model. Variable importance was examined using  to ensure that the chosen variables provided some level of importance. The number of trees in the fit was limited to 2000.</p>
+<p>Based on course experience (and lecture notes), a random forest algorithm is considered one of the best-performing algorithms and was used to build the prediction model. Variable importance was examined using  to ensure that the chosen variables provided some level of importance. The number of trees in the fit was limited to 500. Cross validation is estimated internally with this algorithm and the Out-Of-Bag (OOB) error is provided when the model is fit (see output below).</p>
 <pre class="r"><code>library(randomForest)</code></pre>
 <pre><code>## randomForest 4.6-12
 ## Type rfNews() to see new features/changes/bug fixes.</code></pre>
